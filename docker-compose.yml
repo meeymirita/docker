@@ -1,8 +1,9 @@
-#https://dockerhosting.ru/blog/healthcheck-v-docker-proverka-sostoyaniya-kontejnera/?ysclid=mi2ih8erzo623217335
+# https://dockerhosting.ru/blog/healthcheck-v-docker-proverka-sostoyaniya-kontejnera/?ysclid=mi2ih8erzo623217335
+# https://dockerhub.timeweb.cloud/
 services:
   mysql-db:
     container_name: mysql-db
-    image: docker.io/mysql:8.4
+    image: dockerhub.timeweb.cloud/library/mysql:8.4 # зеркало таймвеба
     restart: always
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}

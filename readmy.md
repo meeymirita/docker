@@ -12,3 +12,7 @@ $ docker-compose logs mysql-db
 docker ps
 # Cодержимое
 cat .env
+# Войти в бд
+SHOW DATABASES;
+USE mirita_db;
+SHOW TABLES;
