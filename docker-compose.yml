@@ -1,9 +1,20 @@
 # https://dockerhosting.ru/blog/healthcheck-v-docker-proverka-sostoyaniya-kontejnera/?ysclid=mi2ih8erzo623217335
 # https://dockerhub.timeweb.cloud/
 services:
+  grafana:
+    image: grafana/grafana-enterprise
+    container_name: grafana
+    restart: always
+    ports:
+      - '3000:3000'
+    networks:
+      - app-network
+    depends_on:
+      - mysql-db
+      - redis-db
   mysql-db:
     container_name: mysql-db
-    image: dockerhub.timeweb.cloud/library/mysql:8.4 # зеркало таймвеба
+    image: dockerhub.timeweb.cloud/library/mysql:8.4
     restart: always
     environment:
       MYSQL_DATABASE: ${MYSQL_DATABASE}
@@ -22,10 +33,28 @@ services:
       timeout: 10s
       retries: 3
       start_period: 60s
+  redis-db:
+    image: dockerhub.timeweb.cloud/library/redis:8.4.0-alpine
+    restart: always
+    container_name: redis-db
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis-data:/var/lib/redis
+    networks:
+      - app-network
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 60s
+
 volumes:
   mysql-data:
     driver: local
-
+  redis-data:
+    driver: local
 networks:
   app-network:
     driver: bridge

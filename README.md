@@ -13,6 +13,19 @@ docker ps
 # Cодержимое
 cat .env
 # Войти в бд
+
+обычный мой 
+mysql -u mirita_user -p
+mirita_password
+
+Рут юзер
+mysql -u root -p
+mirita_root_password
+
+Графана юзер
+CREATE USER 'grafanaReader'@'%' IDENTIFIED BY 'grafanaReader';
+
 SHOW DATABASES;
 USE mirita_db;
 SHOW TABLES;
+
