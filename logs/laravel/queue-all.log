@@ -1,0 +1,84 @@
+
+   InvalidArgumentException 
+
+  The [rabbitmq] queue connection has not been configured.
+
+  at vendor/laravel/framework/src/Illuminate/Queue/QueueManager.php:169
+    165▕     {
+    166▕         $config = $this->getConfig($name);
+    167▕ 
+    168▕         if (is_null($config)) {
+  ➜ 169▕             throw new InvalidArgumentException("The [{$name}] queue connection has not been configured.");
+    170▕         }
+    171▕ 
+    172▕         $queue = $this->getConnector($config['driver'])
+    173▕             ->connect($config)
+
+      [2m+17 vendor frames [22m
+
+  18  artisan:16
+      Illuminate\Foundation\Application::handleCommand(Object(Symfony\Component\Console\Input\ArgvInput))
+
+
+   InvalidArgumentException 
+
+  The [rabbitmq] queue connection has not been configured.
+
+  at vendor/laravel/framework/src/Illuminate/Queue/QueueManager.php:169
+    165▕     {
+    166▕         $config = $this->getConfig($name);
+    167▕ 
+    168▕         if (is_null($config)) {
+  ➜ 169▕             throw new InvalidArgumentException("The [{$name}] queue connection has not been configured.");
+    170▕         }
+    171▕ 
+    172▕         $queue = $this->getConnector($config['driver'])
+    173▕             ->connect($config)
+
+      [2m+17 vendor frames [22m
+
+  18  artisan:16
+      Illuminate\Foundation\Application::handleCommand(Object(Symfony\Component\Console\Input\ArgvInput))
+
+
+   InvalidArgumentException 
+
+  The [rabbitmq] queue connection has not been configured.
+
+  at vendor/laravel/framework/src/Illuminate/Queue/QueueManager.php:169
+    165▕     {
+    166▕         $config = $this->getConfig($name);
+    167▕ 
+    168▕         if (is_null($config)) {
+  ➜ 169▕             throw new InvalidArgumentException("The [{$name}] queue connection has not been configured.");
+    170▕         }
+    171▕ 
+    172▕         $queue = $this->getConnector($config['driver'])
+    173▕             ->connect($config)
+
+      [2m+17 vendor frames [22m
+
+  18  artisan:16
+      Illuminate\Foundation\Application::handleCommand(Object(Symfony\Component\Console\Input\ArgvInput))
+
+
+   InvalidArgumentException 
+
+  The [rabbitmq] queue connection has not been configured.
+
+  at vendor/laravel/framework/src/Illuminate/Queue/QueueManager.php:169
+    165▕     {
+    166▕         $config = $this->getConfig($name);
+    167▕ 
+    168▕         if (is_null($config)) {
+  ➜ 169▕             throw new InvalidArgumentException("The [{$name}] queue connection has not been configured.");
+    170▕         }
+    171▕ 
+    172▕         $queue = $this->getConnector($config['driver'])
+    173▕             ->connect($config)
+
+      [2m+17 vendor frames [22m
+
+  18  artisan:16
+      Illuminate\Foundation\Application::handleCommand(Object(Symfony\Component\Console\Input\ArgvInput))
+

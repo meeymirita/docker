@@ -132,6 +132,68 @@ services:
       MP_SMTP_AUTH_ALLOW_INSECURE: 1
       TZ: Europe/Moscow
 
+  backend:
+    build:
+      context: ./backend
+      dockerfile: Dockerfile
+    container_name: backend
+    environment:
+      APP_ENV: ${APP_ENV}
+      APP_DEBUG: ${APP_DEBUG}
+      APP_URL: ${APP_URL}
+
+      DB_CONNECTION: mysql
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_DATABASE: ${MYSQL_DATABASE}
+      DB_USERNAME: ${MYSQL_USER}
+      DB_PASSWORD: ${MYSQL_PASSWORD}
+
+      REDIS_HOST: redis-db
+      REDIS_PASSWORD: ${REDIS_PASSWORD}
+      REDIS_PORT: 6379
+      REDIS_CLIENT: predis
+
+      BROADCAST_DRIVER: redis
+      CACHE_DRIVER: redis
+      SESSION_DRIVER: redis
+      QUEUE_CONNECTION: rabbitmq
+
+      RABBITMQ_HOST: rabbitmq
+      RABBITMQ_PORT: 5672
+      RABBITMQ_USER: ${RABBITMQ_USER}
+      RABBITMQ_PASSWORD: ${RABBITMQ_PASSWORD}
+      RABBITMQ_VHOST: /
+
+      MAIL_MAILER: smtp
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+      MAIL_USERNAME: null
+      MAIL_PASSWORD: null
+      MAIL_ENCRYPTION: null
+      MAIL_FROM_ADDRESS: noreply@meeymirita.ru
+      MAIL_FROM_NAME: "meeymirita"
+
+      LOG_CHANNEL: stderr
+    volumes:
+      - ./backend:/var/www/html
+      - ./logs/laravel:/var/www/html/storage/logs
+    restart: unless-stopped
+    networks:
+      - app-network
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+      redis-db:
+        condition: service_healthy
+      rabbitmq:
+        condition: service_healthy
+    healthcheck:
+      test: [ "CMD", "php", "/var/www/html/artisan", "route:list" ]
+      <<: *healthcheck-defaults
+      start_period: 120s
+
+
 volumes:
   rabbitmq-data:
     driver: local
